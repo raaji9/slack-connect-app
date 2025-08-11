@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #1a1a1a;
+  color: #f0f0f0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.App {
+  width: 100%;
+  max-width: 600px;
+  background-color: #2a2a2a;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+h1 {
+  color: #61dafb;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: 1px solid #444;
+  background-color: #333;
+  color: #f0f0f0;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+button {
+  padding: 0.75rem;
+  font-size: 1.1rem;
+  background-color: #61dafb;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #1a1a1a;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #4fa8c5;
+}
+
+.response {
+  margin-top: 2rem;
+  padding: 1rem;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.response.success {
+  background-color: #2e7d32;
+}
+
+.response.error {
+  background-color: #d32f2f;
+}
+
+.scheduled-messages {
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.scheduled-messages h2 {
+  text-align: center;
+  color: #61dafb;
+}
+
+.scheduled-messages ul {
+  list-style: none;
+  padding: 0;
+}
+
+.scheduled-messages li {
+  background-color: #333;
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.scheduled-messages li span {
+  font-weight: bold;
+}
+
+.scheduled-messages li p {
+  margin: 0;
+}
+
+.scheduled-messages li button {
+  align-self: flex-end;
+  background-color: #d32f2f;
+  color: white;
+  padding: 0.5rem 1rem;
+}
