@@ -22,7 +22,7 @@ function App() {
   const fetchScheduledMessages = async (currentUserId) => {
     if (!currentUserId) return;
     try {
-      const res = await fetch(`http://localhost:3001/scheduled-messages?userId=${currentUserId}`);
+      const res = await fetch(`https://raaji-slack-connect.onrender.com/scheduled-messages?userId=${currentUserId}`);
       const data = await res.json();
       if (data.success) {
         setScheduledMessages(data.messages);
@@ -37,7 +37,7 @@ function App() {
 
     const fetchChannels = async () => {
       try {
-        const res = await fetch(`http://localhost:3001/api/channels?userId=${userId}`);
+        const res = await fetch(`https://raaji-slack-connect.onrender.com/api/channels?userId=${userId}`);
         const data = await res.json();
         if (data.success) {
           setChannels(data.channels);
@@ -52,7 +52,7 @@ function App() {
   }, [userId]);
 
   const handleConnect = () => {
-    window.location.href = 'https://newly-relevant-marlin.ngrok-free.app/auth/slack';
+    window.location.href = 'https://raaji-slack-connect.onrender.com/auth/slack';
   };
 
   const handleSubmit = async (e) => {
@@ -65,7 +65,7 @@ function App() {
       : { channel, text, userId };
 
     try {
-      const res = await fetch(`http://localhost:3001${endpoint}`, {
+      const res = await fetch(`https://raaji-slack-connect.onrender.com${endpoint}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -85,7 +85,7 @@ function App() {
 
   const handleCancel = async (id) => {
     try {
-      const res = await fetch(`http://localhost:3001/cancel-message/${id}`, {
+      const res = await fetch(`https://raaji-slack-connect.onrender.com/cancel-message/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

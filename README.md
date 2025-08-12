@@ -95,25 +95,40 @@ Follow these steps to get the application running locally on your machine.
 
 ### Running the Application
 
-1.  **Start `ngrok`:**
-    *   In a new terminal, start `ngrok` with your static domain, pointing to your local backend port (3001):
-        ```bash
-        ngrok http --domain=your-static-domain.ngrok-free.app 3001
-        ```
+This application is designed to be run with a deployed backend and a local frontend.
+
+1.  **Deploy the Backend:**
+    *   Follow the instructions in the "Live Project Deployment" section below to deploy the backend to a service like Render.
 
 2.  **Update Your Slack App's Redirect URI:**
-    *   In your Slack app's "OAuth & Permissions" settings, set your Redirect URI to your `ngrok` URL, followed by `/auth/slack/callback`.
-        *   Example: `https://your-static-domain.ngrok-free.app/auth/slack/callback`
+    *   In your Slack app's "OAuth & Permissions" settings, set your Redirect URI to your deployed backend's URL, followed by `/auth/slack/callback`.
+        *   Example: `https://your-app-name.onrender.com/auth/slack/callback`
 
-3.  **Start the Application:**
-    *   In the root directory of the project, run the startup script:
+3.  **Start the Frontend:**
+    *   In a new terminal, navigate to the `frontend` directory and run:
         ```bash
-        ./start.sh
+        npm start
         ```
 
 4.  **Connect and Use the App:**
     *   Open your browser and navigate to `https://localhost:3000`.
     *   Click the "Connect to Slack" button and authorize the application.
+
+## Live Project Deployment
+
+For this project, the backend was deployed to **Render**, a cloud platform for hosting web applications.
+
+### Deployment Steps
+
+1.  **Create a New Web Service:** A new web service was created on Render and connected to the project's GitHub repository.
+2.  **Configuration:** The service was configured with the following settings:
+    *   **Root Directory:** `backend`
+    *   **Build Command:** `npm install && npm run build`
+    *   **Start Command:** `npm start`
+3.  **Environment Variables:** The `SLACK_CLIENT_ID` and `SLACK_CLIENT_SECRET` were added as secure environment variables on the Render dashboard.
+4.  **Health Check:** A `/health` endpoint was added to the backend to allow Render to monitor the application's health.
+
+This setup provides a stable, public URL for the backend, which is a more robust and professional solution than using a tunneling service like `ngrok` for production.
 
 ## Challenges & Learnings
 
@@ -122,6 +137,6 @@ This project was a fantastic learning experience, with several interesting chall
 *   **Mastering the OAuth 2.0 Flow:** The OAuth 2.0 flow is complex, and getting it right—especially the token refresh logic—was a key challenge. I learned the importance of carefully reading the API documentation and understanding the difference between user and bot tokens.
 *   **Debugging the "Connection Reset" Error:** We encountered a persistent "Connection reset" error that was difficult to diagnose. Through systematic debugging, we discovered that it was caused by a race condition in our database handling. This was a great lesson in the importance of robust state management and proper database initialization.
 *   **ES Module Conversion:** Migrating the backend from CommonJS to modern ES modules was a valuable experience. It required a deep dive into TypeScript's module resolution settings and the intricacies of `package.json` configuration.
-*   **The `ngrok` HTTPS Requirement:** We learned that for local development, a simple `localhost` setup is often not enough. Using `ngrok` to provide a secure, public URL for the Slack API to communicate with was a crucial step in getting the application to work correctly.
+*   **Secret Management:** We learned the importance of never committing secrets to a Git repository. We used a `.gitignore` file to exclude sensitive files and the BFG Repo-Cleaner to remove a secret that was accidentally committed. We also enabled GitHub's Secret Scanning feature to prevent future leaks.
 
 Overall, this project was a great opportunity to build a real-world application from scratch, and I'm proud of the result.

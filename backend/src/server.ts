@@ -14,7 +14,7 @@ const port = 3001;
 
 const clientId = process.env.SLACK_CLIENT_ID;
 const clientSecret = process.env.SLACK_CLIENT_SECRET;
-const redirectUri = 'https://newly-relevant-marlin.ngrok-free.app/auth/slack/callback';
+const redirectUri = 'https://raaji-slack-connect.onrender.com/auth/slack/callback';
 
 app.use(cors());
 app.use(bodyParser.json());
