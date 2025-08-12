@@ -12,6 +12,9 @@
 # Database
 /backend/db.json
 
+# Certificates
+/backend/certs
+
 # Logs
 npm-debug.log*
 yarn-debug.log*

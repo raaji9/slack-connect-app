@@ -19,6 +19,10 @@ const redirectUri = 'https://newly-relevant-marlin.ngrok-free.app/auth/slack/cal
 app.use(cors());
 app.use(bodyParser.json());
 
+app.get('/health', (req: Request, res: Response) => {
+  res.status(200).send('OK');
+});
+
 app.get('/auth/slack', (req: Request, res: Response) => {
   const scopes = ['chat:write', 'channels:read', 'team:read', 'users:read'];
   const authorizeUrl = `https://slack.com/oauth/v2/authorize?client_id=${clientId}&scope=${scopes.join(',')}&user_scope=users:read&redirect_uri=${redirectUri}`;
